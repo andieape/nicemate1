@@ -14,7 +14,7 @@ logger = config.get_logger
 
 logger.debug 'Starting telegram bot'
 
-token = '152628097:AAH8T0o6Aq9bKQCkS_fI3-36Gl5-XUADrOs'
+# => token = '152628097:AAH8T0o6Aq9bKQCkS_fI3-36Gl5-XUADrOs'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
