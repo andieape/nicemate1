@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
 require 'telegram/bot'
 
 require './lib/message_responder'
@@ -13,16 +14,14 @@ logger = config.get_logger
 
 logger.debug 'Starting telegram bot'
 
+token = '152628097:AAH8T0o6Aq9bKQCkS_fI3-36Gl5-XUADrOs'
+
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    options = {bot: bot, message: message}
-
-    logger.debug "@#{message.from.username}: #{message.text}" 
-    MessageResponder.new(options).respond
-     case message.text
+    case message.text
     when '/start'
       bot.api.send_message(chat_id: message.chat.id,
                           text: "Hello, #{message.from.first_name}")
-     end
+    end
   end
 end
